@@ -1,0 +1,13 @@
+# AI REFINEMENT RULES
+- Rule 1 — Fix the cause, not the symptom.
+- Rule 2 — Prefer configuration over JSX.
+- Rule 3 — Prefer existing abstractions over new components.
+- Rule 4 — Prefer tokens over arbitrary values.
+- Rule 5 — Prefer subtraction over decoration.
+- Rule 6 — Never trade accessibility for aesthetics.
+- Rule 7 — Never trade performance for visual novelty.
+- Rule 8 — Preserve the original page objective.
+- Rule 9 — Preserve successful sections.
+- Rule 10 — Make the smallest valid correction.
+- Rule 11 — Verify every correction.
+- Rule 12 — Stop when improvement plateaus.

@@ -1,0 +1,22 @@
+
+export type RefinementAction = 
+  | 'adjustContentDensity'
+  | 'adjustVisualMode'
+  | 'adjustVisualIntensity'
+  | 'adjustSectionSpacing'
+  | 'adjustPatternRatio'
+  | 'adjustTypographyScale'
+  | 'adjustMediaAspectRatio'
+  | 'adjustMediaFocalPoint'
+  | 'adjustResponsiveOrder'
+  | 'removeRedundantSection'
+  | 'simplifyContent'
+  | 'changeSectionPattern'
+  | 'adjustSectionOrder'
+  | 'adjustPattern'
+  | 'adjustMedia'
+  | 'adjustSpacing'
+  | 'adjustTypography'
+  | 'adjustResponsiveBehavior'
+  | 'adjustMotionIntensity'
+  | 'removeRedundancy';

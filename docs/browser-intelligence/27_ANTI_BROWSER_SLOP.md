@@ -1,0 +1,2 @@
+# ANTI BROWSER SLOP
+Explicitly prohibit: arbitrary CSS patches, random margin changes, arbitrary transforms, excessive absolute positioning, decorative fixes for structural problems, gradients used to hide poor hierarchy, shadows used to fake depth, blobs used to fill whitespace, animation used to distract from weak composition, unnecessary component variants, hardcoded viewport-specific hacks, screenshot-specific hacks, pixel-perfect patches without architectural reasoning.

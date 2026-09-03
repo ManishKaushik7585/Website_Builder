@@ -1,0 +1,2 @@
+# ANTI QA SLOP
+Explicitly prohibit the QA engine from recommending: gradients as universal fixes, glow effects, random shadows, excessive rounded cards, decorative blobs, arbitrary animation, random asymmetry, excessive whitespace, arbitrary typography changes, unnecessary section duplication, additional cards without content justification, unnecessary 3D, arbitrary color changes, visual noise, or "make it more premium" without diagnosis.

@@ -1,0 +1,51 @@
+@theme {
+  /* Motion Tokens Phase 3C */
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 300ms;
+  --motion-duration-slow: 500ms;
+  --motion-duration-slower: 700ms;
+
+  --motion-delay-none: 0ms;
+  --motion-delay-short: 100ms;
+  --motion-delay-medium: 200ms;
+
+  --motion-ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --motion-ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --motion-ease-exit: cubic-bezier(0.4, 0.0, 1, 1);
+  --motion-ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1);
+
+  --motion-distance-sm: 4px;
+  --motion-distance-md: 16px;
+  --motion-distance-lg: 32px;
+
+  --motion-scale-sm: 0.98;
+  --motion-scale-md: 0.95;
+  --motion-scale-lg: 0.90;
+
+  /* Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #3b82f6;
+  --color-background-primary: #ffffff;
+  --color-surface-elevated: #f3f4f6;
+
+  /* Typography */
+  --font-primary: "Inter", sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+  --text-body: 16px;
+  --text-heading: 24px;
+  --text-display: 48px;
+
+  /* Spacing */
+  --spacing-component-padding: 1rem;
+  --spacing-section-padding: 2rem;
+
+  /* Layout */
+  --width-page: 1200px;
+
+  /* Radius */
+  --radius-button: 0.375rem;
+  --radius-card: 0.5rem;
+
+  /* Shadows */
+  --shadow-card-elevation: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
