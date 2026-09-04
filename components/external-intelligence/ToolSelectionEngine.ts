@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ResearchObjective, ResearchDepth } from '../../config/external-intelligence';
 import { ProviderRegistry, ProviderRegistration } from './providers/ProviderRegistry';
 

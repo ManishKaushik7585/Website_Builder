@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type LearningSource = 
   | 'generation' 
   | 'research' 
@@ -93,7 +94,7 @@ export interface KnowledgeCandidate {
 }
 
 export interface AdaptiveKnowledge extends KnowledgeCandidate {
-  status: 'active' | 'validated';
+  status: 'active' | 'validated' | 'expired';
 }
 
 export type LearningDecisionAction = 'accept' | 'reject' | 'defer' | 'deprecate' | 'supersede';

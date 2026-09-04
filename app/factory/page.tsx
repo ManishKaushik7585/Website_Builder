@@ -17,6 +17,7 @@ export default function FactoryPage() {
   const [deploymentArtifact, setDeploymentArtifact] = useState<any>(null);
   const [researchContext, setResearchContext] = useState<any>(null);
   const [adaptiveContext, setAdaptiveContext] = useState<any>(null);
+  const [creativeDirection, setCreativeDirection] = useState<any>(null);
 
   const handleGenerate = async () => {
     setStage('understanding');
@@ -48,6 +49,9 @@ export default function FactoryPage() {
           }
           if (data.result.adaptiveContext) {
             setAdaptiveContext(data.result.adaptiveContext);
+          }
+          if (data.result.creativeDirection) {
+            setCreativeDirection(data.result.creativeDirection);
           }
 
           // Trigger evaluation
@@ -458,6 +462,88 @@ export default function FactoryPage() {
                         <div key={idx} className="bg-red-900/20 border border-red-800 p-2 rounded text-xs text-red-300">
                           {fs}
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {creativeDirection && (
+              <div className="mb-6 border border-gray-800 rounded p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-bold">Creative Direction (Phase 13)</h3>
+                  <span className={`text-xs px-2 py-1 rounded capitalize ${
+                    creativeDirection.status === 'validated' ? 'bg-green-900 text-green-300' : 
+                    'bg-gray-800 text-gray-400'
+                  }`}>
+                    {creativeDirection.status}
+                  </span>
+                </div>
+                
+                <div className="bg-gray-900 p-3 rounded mb-4">
+                  <div className="text-xs text-gray-500 mb-1">SELECTED DIRECTION</div>
+                  <div className="text-lg text-white font-bold">{creativeDirection.selectedDirection}</div>
+                  <div className="text-sm text-gray-400 mt-1">Confidence: {Math.round(creativeDirection.confidence.overall * 100)}%</div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 text-xs mb-4">
+                  <div>
+                    <span className="text-gray-500 block">VISUAL LANGUAGE</span>
+                    <span className="text-white">{creativeDirection.visualIdentity.visualLanguage.join(', ')}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block">TYPOGRAPHY</span>
+                    <span className="text-white">{creativeDirection.typography.displayDirection} / {creativeDirection.typography.bodyDirection}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block">COLOR</span>
+                    <span className="text-white">{creativeDirection.color.strategy}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block">LAYOUT</span>
+                    <span className="text-white">{creativeDirection.layout.philosophy}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block">MOTION</span>
+                    <span className="text-white">{creativeDirection.motion.intensity} - {creativeDirection.motion.philosophy}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block">IMAGERY</span>
+                    <span className="text-white">{creativeDirection.imagery.strategy}</span>
+                  </div>
+                </div>
+
+                {creativeDirection.antiPatterns?.length > 0 && (
+                  <div className="mb-4">
+                    <div className="text-xs text-gray-500 mb-2">ANTI-PATTERNS (AVOID)</div>
+                    <div className="flex flex-col space-y-1">
+                      {creativeDirection.antiPatterns.map((ap: string, idx: number) => (
+                        <div key={idx} className="text-red-400 text-xs">× {ap}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {creativeDirection.researchGaps?.length > 0 && (
+                  <div className="mb-4">
+                    <div className="text-xs text-gray-500 mb-2">RESEARCH GAPS</div>
+                    <div className="flex flex-col space-y-1">
+                      {creativeDirection.researchGaps.map((rg: string, idx: number) => (
+                        <div key={idx} className="text-yellow-400 text-xs">⚠ {rg}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {creativeDirection.alternatives?.length > 0 && (
+                  <div className="pt-2 border-t border-gray-800">
+                    <div className="text-xs text-gray-500 mb-2">ALTERNATIVES CONSIDERED</div>
+                    <div className="flex space-x-2">
+                      {creativeDirection.alternatives.map((alt: any, idx: number) => (
+                        <span key={idx} className={`text-xs px-2 py-1 rounded border ${alt.name === creativeDirection.selectedDirection ? 'bg-blue-900 border-blue-500 text-blue-100' : 'border-gray-700 text-gray-400'}`}>
+                          {alt.name}
+                        </span>
                       ))}
                     </div>
                   </div>

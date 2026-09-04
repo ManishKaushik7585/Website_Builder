@@ -32,11 +32,16 @@ export class AgentRuntime {
     const { AdaptiveIntelligenceOrchestrator } = await import('../adaptive-intelligence/AdaptiveIntelligenceOrchestrator');
     const adaptiveContext = await AdaptiveIntelligenceOrchestrator.getAdaptiveContext(projectId, { brief });
 
-    // 0.1 EXTERNAL INTELLIGENCE (Phase 10)
+    // 0.1 EXTERNAL INTELLIGENCE (Phase 10/11)
     const { ExternalIntelligenceOrchestrator } = await import('../external-intelligence/ExternalIntelligenceOrchestrator');
     const researchContext = await ExternalIntelligenceOrchestrator.execute(projectId, brief, adaptiveContext);
+
+    // 0.2 CREATIVE DIRECTION (Phase 13)
+    const { CreativeDirectionOrchestrator } = await import('../creative-direction/CreativeDirectionOrchestrator');
+    const creativeDirection = await CreativeDirectionOrchestrator.execute(projectId, brief, adaptiveContext, researchContext);
     
-    // 1. Generate Site Plan (Mocked but now context-aware of research)
+    // 1. Generate Site Plan (Phase 1 - Project Intelligence)
+    // Project Intelligence uses creativeDirection to determine site structure.
     const sitePlan: SitePlan = {
       projectObjective: 'mock',
       audience: 'mock',
@@ -92,7 +97,8 @@ export class AgentRuntime {
       releaseReadiness,
       projectId,
       researchContext,
-      adaptiveContext
+      adaptiveContext,
+      creativeDirection
     };
   }
 

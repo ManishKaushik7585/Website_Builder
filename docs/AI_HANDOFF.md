@@ -111,7 +111,12 @@ PROJECT -> SITE PLAN -> MULTI-PAGE ORCHESTRATOR -> [PER-PAGE CONVERGENCE] -> CRO
 
 The orchestrator maps the entire Site Plan, resolving generation across all pages before evaluating cross-page token cohesion and internal navigation integrity. Final project readiness requires unanimous page convergence and zero global consistency violations.
 
-## Canonical Architecture (Phase 11)
+## AI Handoff & Architecture Guide
+
+> **CORE ARCHITECTURE STATUS: FROZEN**
+> 
+> The foundational intelligence architecture is considered complete. Future changes should be additive, evidence-driven, and justified by an actual product requirement (e.g., feature, provider, integration, optimization, bug fix, UI improvement) rather than new foundational intelligence layers.
+(Phase 11)
 The absolute strict flow for all AI processing is as follows:
 
 1. **EXTERNAL INTELLIGENCE**: Gathers budgeted, evidence-backed external research context and patterns (web/design/assets/typography/MCP) through intelligent tool selection and provider routing while sanitizing against malicious payloads.
@@ -133,9 +138,17 @@ The absolute strict flow for all AI processing is as follows:
 17. **DEPLOYMENT CONTROL**: Evaluates authorization blocks for live releases.
 18. **DEPLOYMENT EXECUTION**: Hands execution via rigid adapters to prevent CLI injection.
 19. **RELEASE VERIFICATION**: Asserts live-state matches deployment artifact.
+20. **ADAPTIVE INTELLIGENCE**: Logs project outcomes for advisory cross-project learning.
 
 ## RELEASE INTELLIGENCE AUTHORITY
 
+*### **[Phase 13] Autonomous Creative Direction & Project Intelligence (COMPLETED)**
+- **Objective**: Establish an intelligence boundary that deterministically defines the creative intent (visuals, typography, motion, constraints) before handing off to the SitePlan generator.
+- **Key Files**: 
+  - `components/creative-direction/CreativeDirectionOrchestrator.ts`
+  - `config/creative-direction.ts`
+  - `registry/creative-direction-validator.ts`
+- **Result**: Successfully integrated. `AgentRuntime` now passes the context sequence: Adaptive -> External -> Creative -> Project. Factory UI displays a read-only representation of the resulting contract, including generated rationale and confidence calculations based on real evidence and constraint completion.
 * Site Acceptance precedes Release Intelligence.
 * Release Intelligence is the final deployment-readiness authority.
 * Release Intelligence cannot deploy.
@@ -158,5 +171,10 @@ The absolute strict flow for all AI processing is as follows:
 * Secrets never cross the client boundary.
 
 The canonical architecture is now:
-`PROJECT → SITE PLAN → PAGE ROLE → CONTENT → RESPONSIVE → INTERACTION → GENERATION → OBSERVABILITY → QUALITY → CONVERGENCE → MULTI-PAGE → SITE ACCEPTANCE → RELEASE INTELLIGENCE → DEPLOYMENT CONTROL → DEPLOYMENT → VERIFICATION`
+`PROJECT → SITE PLAN → PAGE ROLE → CONTENT → RESPONSIVE → INTERACTION → GENERATION → OBSERVABILITY → QUALITY → CONVERGENCE → MULTI-PAGE → SITE ACCEPTANCE → RELEASE INTELLIGENCE → DEPLOYMENT CONTROL → DEPLOYMENT → VERIFICATION → ADAPTIVE INTELLIGENCE`
 
+### 12. Adaptive Intelligence (Phase 12)
+**Directory**: `components/adaptive-intelligence/`
+**Purpose**: Memory layer tracking cross-project outcomes to advise planning and research phases without overriding strict validators.
+**Key Files**: `AdaptiveMemory.ts`, `AdaptiveIntelligenceOrchestrator.ts`, `LearningAnalyzer.ts`
+**Status**: Implemented

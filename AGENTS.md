@@ -27,7 +27,12 @@ You are operating within the `website_engine` project, a reusable, premium, prod
 The agent has physical access to the following tools:
 1. **21st.dev MCP**: Configured globally. Use this MCP to search and retrieve high-end, pre-built UI components instead of writing complex animated components from scratch.
    - **21st.dev is a COMPONENT RESEARCH AND SOURCING TOOL. It is NOT the project's design authority.**
-   - When using 21st.dev: Search for relevant patterns, inspect multiple alternatives, understand the implementation, adapt it to our design intelligence, tokens, component architecture, and verify accessibility/performance. Never blindly copy.
+   - When using 21st.dev: Search for relevant patterns, inspect multiple alternatives, understand the implementation, adapt it to our# Antigravity Website Engine - Agents & Intelligence Architecture
+
+> **CORE ARCHITECTURE STATUS: FROZEN**
+> 
+> The foundational intelligence architecture is considered complete. Future changes should be additive, evidence-driven, and justified by an actual product requirement.
+, and verify accessibility/performance. Never blindly copy.
 2. **Playwright MCP & CLI**: Installed locally. Use the MCP tools to control a headless browser for QA, or run `npx playwright test` for E2E tests.
    - **Playwright is the project's BROWSER VERIFICATION TOOL.**
    - Future workflow: BUILD → RUN → OPEN → INSPECT → SCREENSHOT → TEST → IDENTIFY ISSUES → FIX → RETEST.
@@ -275,7 +280,36 @@ Rules:
 4. Loop halts if evidence is missing, iteration exhausts, stalls, regresses, or is unsupported.
 
 ## MULTI-PAGE ORCHESTRATION AUTHORITY
-1. The entire Generation -> Convergence pipeline operates iteratively across all pages defined in the Phase 7A Site Plan.
-2. Final acceptance is gated by the Site Acceptance Orchestrator.
+1. The entire Generation -> Convergence pipeline operates iteratively across all pages defined in the## Phase 14: Final System Hardening & Production Certification [COMPLETED]
+
+The final certification phase audits, tightens, and asserts structural invariants across the entire platform. No new intelligence layer was introduced.
+
+Key guarantees established in this phase:
+- **Project Isolation**: Adaptive Memory cannot leak across project boundaries unless globally promoted.
+- **Provider Fallbacks**: External timeouts degrade gracefully rather than crashing the orchestrator.
+- **Strict Boundaries**: Release readiness blocks unauthorized deployments.
+- **Injection Safety**: External providers are strictly sanitized against Prompt Injection.
+- **Bounded Autonomous Loops**: Convergence routines are hard-capped to prevent infinite loops.
+- **Reproducibility**: Intelligence contracts preserve provenance, source identity, and version bounds.
+
+The full pipeline has achieved **READY** status for production.s gated by the Site Acceptance Orchestrator.
 3. Global tokens and intents must remain perfectly consistent across all pages.
 4. A site is not complete until every individual page achieves an 'accepted' convergence state.
+
+### **PHASE 13: Creative Direction & Project Intelligence [COMPLETED]**
+- **Goal:** Determine *what* experience to build, synthesizing adaptive memory, external research, and the brief into a deterministic `CreativeDirectionContract`.
+- **Status:** Integrated. Orchestrator connects External Intelligence to Project Intelligence. Factory UI displays creative decisions, confidence, and rationale.g capabilities across projects.
+
+## Phase 12: Adaptive Design Intelligence & Continuous Learning
+
+The **Adaptive Intelligence Layer** (Phase 12) provides memory and learning capabilities across projects.
+
+**Key Constraints:**
+- **Advisory Only**: Phase 12 only provides context, recommendations, and warnings. It NEVER overrides strict constraints from Phases 1-9 (e.g. Generation Quality, Responsive validation).
+- **Modification Rule**: Adaptive Intelligence modifies memory state, not code architecture.
+- **Components:**
+  - `AdaptiveMemoryStore`: Stores structured `KnowledgeCandidate` objects.
+  - `OutcomeExtractor`: Converts Phase 1-11 results into `RawOutcomeEvent` arrays.
+  - `LearningAnalyzer` / `ResearchEffectiveness` / `DesignPatternLearning` / `FailureMemory`: Extract candidates from events.
+  - `KnowledgeConflictResolver`: Prevents contradictory learnings.
+  - `AdaptiveRecommendationEngine`: Converts Active Knowledge into context-aware recommendations for Phase 10/11 ToolSelection and Phase 1-9 Planning.

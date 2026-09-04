@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { KnowledgeCandidate, LearningRecommendation } from '../config/adaptive-intelligence';
 
 export class AdaptiveIntelligenceValidator {

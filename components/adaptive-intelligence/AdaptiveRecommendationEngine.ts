@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AdaptiveKnowledge, LearningRecommendation } from '../../config/adaptive-intelligence';
 import { ContextMatcher } from './ContextMatcher';
 

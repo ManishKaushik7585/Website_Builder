@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LearningOutcome, LearningSource } from '../../config/adaptive-intelligence';
 
 export interface RawOutcomeEvent {

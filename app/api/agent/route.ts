@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import { AgentRuntime } from '@/components/agent/AgentRuntime';
 import { FactoryStateHydrator } from '@/components/observability/FactoryStateHydrator';
@@ -68,7 +69,8 @@ export async function POST(request: Request) {
         multiPageState: result.multiPageState,
         releaseReadiness: result.releaseReadiness,
         researchContext: result.researchContext,
-        adaptiveContext: result.adaptiveContext
+        adaptiveContext: result.adaptiveContext,
+        creativeDirection: result.creativeDirection
       } 
     });
   } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any

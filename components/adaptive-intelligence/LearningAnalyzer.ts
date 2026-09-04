@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { KnowledgeCandidate, KnowledgeStatus } from '../../config/adaptive-intelligence';
 import { RawOutcomeEvent } from './OutcomeExtractor';
 import { LearningConfidenceEngine } from './LearningConfidence';

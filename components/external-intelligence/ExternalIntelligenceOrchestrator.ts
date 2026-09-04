@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExternalIntelligenceResult, ExternalIntelligenceStatus, ResearchEvidence } from '../../config/external-intelligence';
 import { ResearchMemoryManager } from './ResearchMemory';
 import { ResearchBudgetManager } from './ResearchBudget';

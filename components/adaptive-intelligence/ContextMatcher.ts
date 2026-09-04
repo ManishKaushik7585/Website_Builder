@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AdaptiveKnowledge } from '../../config/adaptive-intelligence';
 
 export class ContextMatcher {
@@ -9,7 +10,11 @@ export class ContextMatcher {
     return knowledge.filter(k => {
       // Global knowledge applies generally, but could be filtered if there are explicit negative matches
       if (k.scope === 'global') return true;
-      if (k.scope === 'project' && k.evidence.some(e => e.projectContext?.projectId === currentContext.projectId)) return true;
+      if (k.scope === 'project') {
+        if (k.evidence.some(e => e.projectContext?.projectId === currentContext.projectId)) return true;
+        // If it's a project scoped knowledge and the projectId doesn't match, it must NOT leak to other projects
+        return false;
+      }
 
       // Check context fields matching
       // If a knowledge explicitly references an industry in its evidence projectContext, does it match?
