@@ -27,22 +27,22 @@ export async function POST(request: Request) {
       if (!body.projectId || !body.releaseResult) {
         return NextResponse.json({ error: 'AI_INVALID_REQUEST: Missing deployment inputs' }, { status: 400 });
       }
-      
-      const deploymentProcess = action === 'evaluate' 
+
+      const deploymentProcess = action === 'evaluate'
         ? await runtime.evaluateDeployment(body.projectId, body.releaseResult, body.environment || 'preview', body.target || 'managed')
         : await runtime.executeDeployment(body.projectId, body.releaseResult, body.environment || 'preview', body.target || 'managed', !!body.explicitApproval);
-      
+
       return NextResponse.json({ success: true, result: deploymentProcess });
     }
 
     const researchActions = ['research', 'discover', 'github', 'design-reference', 'mcp-discover'];
-    
+
     if (researchActions.includes(action)) {
       if (!body.brief || !body.projectId) {
         return NextResponse.json({ error: 'AI_INVALID_REQUEST: Missing brief or projectId' }, { status: 400 });
       }
       const { ExternalIntelligenceOrchestrator } = await import('@/components/external-intelligence/ExternalIntelligenceOrchestrator');
-      
+
       // In a fully split architecture, we'd route these to specific providers.
       // But orchestrator handles the unified pipeline.
       const researchContext = await ExternalIntelligenceOrchestrator.execute(body.projectId, body.brief);
@@ -54,24 +54,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'AI_INVALID_REQUEST: Missing brief' }, { status: 400 });
     }
     const result = await runtime.executeGenerationFlow(body.brief);
-    
+
     // Hydrate state for client presentation, stripping any backend metadata or secrets
     const hydratedState = FactoryStateHydrator.hydrate(result.snapshot);
-    
-    return NextResponse.json({ 
-      success: true, 
-      result: { 
+
+    return NextResponse.json({
+      success: true,
+      result: {
         projectId: result.projectId,
-        output: result.output, 
-        state: hydratedState, 
-        quality: result.quality, 
-        convergence: result.convergence, 
+        output: result.output,
+        state: hydratedState,
+        quality: result.quality,
+        convergence: result.convergence,
         multiPageState: result.multiPageState,
         releaseReadiness: result.releaseReadiness,
         researchContext: result.researchContext,
         adaptiveContext: result.adaptiveContext,
         creativeDirection: result.creativeDirection
-      } 
+      }
     });
   } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     return NextResponse.json({ error: error.message || 'AI_UNKNOWN_ERROR' }, { status: 500 });

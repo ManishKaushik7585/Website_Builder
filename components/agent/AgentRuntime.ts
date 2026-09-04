@@ -27,7 +27,7 @@ export class AgentRuntime {
 
   async executeGenerationFlow(brief: string) {
     const projectId = 'proj_default';
-    
+
     // 0. ADAPTIVE INTELLIGENCE (Upstream Context)
     const { AdaptiveIntelligenceOrchestrator } = await import('../adaptive-intelligence/AdaptiveIntelligenceOrchestrator');
     const adaptiveContext = await AdaptiveIntelligenceOrchestrator.getAdaptiveContext(projectId, { brief });
@@ -39,7 +39,7 @@ export class AgentRuntime {
     // 0.2 CREATIVE DIRECTION (Phase 13)
     const { CreativeDirectionOrchestrator } = await import('../creative-direction/CreativeDirectionOrchestrator');
     const creativeDirection = await CreativeDirectionOrchestrator.execute(projectId, brief, adaptiveContext, researchContext);
-    
+
     // 1. Generate Site Plan (Phase 1 - Project Intelligence)
     // Project Intelligence uses creativeDirection to determine site structure.
     const sitePlan: SitePlan = {
@@ -66,7 +66,7 @@ export class AgentRuntime {
       pageResults,
       snapshots
     );
-    
+
     // 9. RELEASE INTELLIGENCE (Phase 8)
     const releaseReadiness = ReleaseIntelligenceOrchestrator.evaluate(
       multiPageState,
@@ -77,7 +77,7 @@ export class AgentRuntime {
     // can be derived from the primary generated page for backward UI compatibility.
     const primaryPageResult = multiPageState.pageResults[sitePlan.pages[0]];
     const primarySnapshot = (multiPageState as any).snapshots?.[sitePlan.pages[0]] || Object.values(snapshots)[0];
-    
+
     // 10. ADAPTIVE INTELLIGENCE (Outcome Learning)
     await AdaptiveIntelligenceOrchestrator.extractAndLearn(projectId, {
       quality: { acceptanceStatus: multiPageState.status, violations: [], score: 100 }, // Extracted from full results in reality
@@ -110,7 +110,7 @@ export class AgentRuntime {
   async executeDeployment(projectId: string, releaseResult: any, environment: any, target: any, explicitApproval: boolean) {
     const { DeploymentOrchestrator } = await import('../deployment-control/DeploymentOrchestrator');
     const deploymentResult = await DeploymentOrchestrator.process(projectId, releaseResult, environment, target, 'deploy', explicitApproval);
-    
+
     // Phase 12: Extract Deployment Outcome
     const { AdaptiveIntelligenceOrchestrator } = await import('../adaptive-intelligence/AdaptiveIntelligenceOrchestrator');
     await AdaptiveIntelligenceOrchestrator.extractAndLearn(projectId, { deployment: deploymentResult });
@@ -120,10 +120,10 @@ export class AgentRuntime {
 
   private async executePageFlow(brief: string, projectId: string, pageId: string) {
     const runId = `run_${Date.now()}_${pageId}`;
-    
+
     // 1. PROJECT -> SITE PLAN -> PAGE ROLE (Mocking role resolution)
     const mockRole = PAGE_ROLES[pageId as keyof typeof PAGE_ROLES] || PAGE_ROLES['home'];
-    
+
     // 2. CONTENT INTELLIGENCE -> VALIDATION -> REFINEMENT
     const mockSections = mockRole.contentExpectations!.requirements
       .filter(req => req.requirement === 'required' || req.purpose === 'hero')
@@ -159,7 +159,7 @@ export class AgentRuntime {
       },
       behaviors: [{ sectionPurpose: 'hero', transformations: [] }]
     };
-    
+
     const responsiveResult = ResponsiveOrchestrator.generateAndRefine(
       initialResponsivePlan,
       contentResult.plan,
@@ -181,7 +181,7 @@ export class AgentRuntime {
       },
       behaviors: [{ sectionPurpose: 'hero', elementId: 'hero-cta', requirements: [] }]
     };
-    
+
     const interactionResult = InteractionOrchestrator.generateAndRefine(
       initialInteractionPlan,
       responsiveResult.plan,
@@ -238,14 +238,14 @@ export class AgentRuntime {
             return await runGeneration(provider, promptWithContext, actions, scope);
           });
         });
-        
+
         // Mock new snapshot & generation plan
         const newSnapshot = this.observability.createSnapshot(runId, projectId, pageId, 'generation_ready', 2, {
           content: contentResult.plan,
           responsive: responsiveResult.plan,
           interaction: interactionResult.plan
         });
-        
+
         return { generation: { sections: mockGenerationSections } as any, snapshot: newSnapshot };
       }
     );

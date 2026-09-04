@@ -12,7 +12,7 @@ export interface RawOutcomeEvent {
 }
 
 export class OutcomeExtractor {
-  
+
   static extractFromQuality(projectId: string, pageId: string, qualityResult: any): RawOutcomeEvent {
     let outcome: LearningOutcome = 'success';
     const observations: string[] = [];
@@ -65,10 +65,10 @@ export class OutcomeExtractor {
       projectId,
       timestamp: new Date().toISOString(),
       outcome,
-      context: { 
-        pageId, 
-        iterations: convergenceResult.currentIteration, 
-        finalScore: convergenceResult.finalScore 
+      context: {
+        pageId,
+        iterations: convergenceResult.currentIteration,
+        finalScore: convergenceResult.finalScore
       },
       observations
     };

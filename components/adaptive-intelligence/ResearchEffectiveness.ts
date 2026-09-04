@@ -4,8 +4,8 @@ import { LearningConfidenceEngine } from './LearningConfidence';
 
 export class ResearchEffectiveness {
   static evaluateProvider(providerName: string, events: RawOutcomeEvent[]): KnowledgeCandidate | null {
-    const providerEvents = events.filter(e => 
-      e.source === 'research' && 
+    const providerEvents = events.filter(e =>
+      e.source === 'research' &&
       e.context?.provider === providerName
     );
 
@@ -13,7 +13,7 @@ export class ResearchEffectiveness {
 
     let successCount = 0;
     let failureCount = 0;
-    
+
     providerEvents.forEach(e => {
       if (e.outcome === 'success') successCount++;
       else if (e.outcome === 'failure' || e.outcome === 'partial') failureCount++;
@@ -30,12 +30,12 @@ export class ResearchEffectiveness {
   }
 
   private static createEffectivenessCandidate(
-    providerName: string, 
-    effectiveness: 'high' | 'low', 
+    providerName: string,
+    effectiveness: 'high' | 'low',
     events: RawOutcomeEvent[]
   ): KnowledgeCandidate {
-    
-    const statement = effectiveness === 'high' 
+
+    const statement = effectiveness === 'high'
       ? `Provider ${providerName} consistently returned highly effective research results.`
       : `Provider ${providerName} consistently returned poor or failed research results.`;
 
