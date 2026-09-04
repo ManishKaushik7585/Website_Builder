@@ -17,7 +17,7 @@ import { EngineeringPatternExtractor } from './EngineeringPatternExtractor';
 
 export class ExternalIntelligenceOrchestrator {
   
-  static async execute(projectId: string, brief: string): Promise<ExternalIntelligenceResult> {
+  static async execute(projectId: string, brief: string, adaptiveContext?: any): Promise<ExternalIntelligenceResult> {
     ProviderRegistry.initializeDefaults();
     
     const memory = new ResearchMemoryManager(projectId);
@@ -39,7 +39,7 @@ export class ExternalIntelligenceOrchestrator {
       const objective = (uncertainty.domain === 'navigation' || uncertainty.domain === 'typography') ? 'design-trends' : 'engineering-patterns';
       
       // 3. Tool Selection
-      const providers = ToolSelectionEngine.selectProviders(objective, uncertainty.researchPriority);
+      const providers = ToolSelectionEngine.selectProviders(objective, uncertainty.researchPriority, adaptiveContext);
       
       for (const provider of providers) {
         try {

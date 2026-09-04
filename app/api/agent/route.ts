@@ -67,7 +67,8 @@ export async function POST(request: Request) {
         convergence: result.convergence, 
         multiPageState: result.multiPageState,
         releaseReadiness: result.releaseReadiness,
-        researchContext: result.researchContext
+        researchContext: result.researchContext,
+        adaptiveContext: result.adaptiveContext
       } 
     });
   } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any

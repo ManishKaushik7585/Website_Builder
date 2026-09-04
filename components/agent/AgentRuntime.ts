@@ -28,9 +28,13 @@ export class AgentRuntime {
   async executeGenerationFlow(brief: string) {
     const projectId = 'proj_default';
     
-    // 0. EXTERNAL INTELLIGENCE (Phase 10)
+    // 0. ADAPTIVE INTELLIGENCE (Upstream Context)
+    const { AdaptiveIntelligenceOrchestrator } = await import('../adaptive-intelligence/AdaptiveIntelligenceOrchestrator');
+    const adaptiveContext = await AdaptiveIntelligenceOrchestrator.getAdaptiveContext(projectId, { brief });
+
+    // 0.1 EXTERNAL INTELLIGENCE (Phase 10)
     const { ExternalIntelligenceOrchestrator } = await import('../external-intelligence/ExternalIntelligenceOrchestrator');
-    const researchContext = await ExternalIntelligenceOrchestrator.execute(projectId, brief);
+    const researchContext = await ExternalIntelligenceOrchestrator.execute(projectId, brief, adaptiveContext);
     
     // 1. Generate Site Plan (Mocked but now context-aware of research)
     const sitePlan: SitePlan = {
@@ -69,6 +73,15 @@ export class AgentRuntime {
     const primaryPageResult = multiPageState.pageResults[sitePlan.pages[0]];
     const primarySnapshot = (multiPageState as any).snapshots?.[sitePlan.pages[0]] || Object.values(snapshots)[0];
     
+    // 10. ADAPTIVE INTELLIGENCE (Outcome Learning)
+    await AdaptiveIntelligenceOrchestrator.extractAndLearn(projectId, {
+      quality: { acceptanceStatus: multiPageState.status, violations: [], score: 100 }, // Extracted from full results in reality
+      convergence: primaryPageResult,
+      siteAcceptance: multiPageState,
+      release: releaseReadiness,
+      research: researchContext
+    });
+
     return {
       output: 'Project Generation Orchestrated',
       snapshot: primarySnapshot,
@@ -78,7 +91,8 @@ export class AgentRuntime {
       siteAcceptance: multiPageState,
       releaseReadiness,
       projectId,
-      researchContext
+      researchContext,
+      adaptiveContext
     };
   }
 
@@ -89,7 +103,13 @@ export class AgentRuntime {
 
   async executeDeployment(projectId: string, releaseResult: any, environment: any, target: any, explicitApproval: boolean) {
     const { DeploymentOrchestrator } = await import('../deployment-control/DeploymentOrchestrator');
-    return DeploymentOrchestrator.process(projectId, releaseResult, environment, target, 'deploy', explicitApproval);
+    const deploymentResult = await DeploymentOrchestrator.process(projectId, releaseResult, environment, target, 'deploy', explicitApproval);
+    
+    // Phase 12: Extract Deployment Outcome
+    const { AdaptiveIntelligenceOrchestrator } = await import('../adaptive-intelligence/AdaptiveIntelligenceOrchestrator');
+    await AdaptiveIntelligenceOrchestrator.extractAndLearn(projectId, { deployment: deploymentResult });
+
+    return deploymentResult;
   }
 
   private async executePageFlow(brief: string, projectId: string, pageId: string) {

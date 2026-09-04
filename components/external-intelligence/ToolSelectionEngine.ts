@@ -3,9 +3,22 @@ import { ProviderRegistry, ProviderRegistration } from './providers/ProviderRegi
 
 export class ToolSelectionEngine {
   
-  static selectProviders(objective: ResearchObjective, depth: ResearchDepth): ProviderRegistration[] {
-    const available = ProviderRegistry.getAvailableProviders();
+  static selectProviders(objective: ResearchObjective, depth: ResearchDepth, adaptiveContext?: any): ProviderRegistration[] {
+    let available = [...ProviderRegistry.getAvailableProviders()];
     const selected: ProviderRegistration[] = [];
+
+    if (adaptiveContext?.researchEffectiveness) {
+      // Re-rank available based on high/low effectiveness memory
+      available.sort((a, b) => {
+        const effA = adaptiveContext.researchEffectiveness[a.id];
+        const effB = adaptiveContext.researchEffectiveness[b.id];
+        if (effA === 'high' && effB !== 'high') return -1;
+        if (effB === 'high' && effA !== 'high') return 1;
+        if (effA === 'low' && effB !== 'low') return 1;
+        if (effB === 'low' && effA !== 'low') return -1;
+        return 0;
+      });
+    }
 
     // If no research is needed, return none
     if (depth === 'NONE') return [];

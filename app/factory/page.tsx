@@ -16,6 +16,7 @@ export default function FactoryPage() {
   const [deploymentState, setDeploymentState] = useState<any>(null);
   const [deploymentArtifact, setDeploymentArtifact] = useState<any>(null);
   const [researchContext, setResearchContext] = useState<any>(null);
+  const [adaptiveContext, setAdaptiveContext] = useState<any>(null);
 
   const handleGenerate = async () => {
     setStage('understanding');
@@ -44,6 +45,9 @@ export default function FactoryPage() {
           
           if (data.result.researchContext) {
             setResearchContext(data.result.researchContext);
+          }
+          if (data.result.adaptiveContext) {
+            setAdaptiveContext(data.result.adaptiveContext);
           }
 
           // Trigger evaluation
@@ -401,6 +405,59 @@ export default function FactoryPage() {
                         <span key={idx} className="bg-red-900/40 text-red-300 text-xs px-2 py-1 rounded border border-red-800/50">
                           {u.domain} (Priority: {u.researchPriority})
                         </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {adaptiveContext && (
+              <div className="mb-6 border border-gray-800 rounded p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-bold">Adaptive Intelligence (Phase 12)</h3>
+                  <span className={`text-xs px-2 py-1 rounded capitalize ${
+                    adaptiveContext.status === 'active' ? 'bg-green-900 text-green-300' : 
+                    'bg-gray-800 text-gray-400'
+                  }`}>
+                    {adaptiveContext.status}
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="bg-gray-900 p-3 rounded">
+                    <div className="text-xs text-gray-500 mb-1">Knowledge Candidates</div>
+                    <div className="text-lg text-white font-light">{adaptiveContext.knowledgeCandidates?.length || 0} extracted</div>
+                  </div>
+                  <div className="bg-gray-900 p-3 rounded">
+                    <div className="text-xs text-gray-500 mb-1">Active Memory</div>
+                    <div className="text-lg text-white font-light">{adaptiveContext.activeKnowledge?.length || 0} patterns</div>
+                  </div>
+                </div>
+
+                {adaptiveContext.recommendations?.length > 0 && (
+                  <div className="mb-4">
+                    <div className="text-xs text-gray-500 mb-2">Contextual Recommendations</div>
+                    <div className="flex flex-col space-y-2">
+                      {adaptiveContext.recommendations.map((rec: any, idx: number) => (
+                        <div key={idx} className="bg-blue-900/20 border border-blue-800 p-2 rounded text-xs">
+                          <span className="text-blue-300 font-bold block mb-1">[{rec.confidence.toUpperCase()}] {rec.scope.toUpperCase()} SCOPE</span>
+                          <span className="text-white">{rec.reason}</span>
+                          <span className="text-gray-400 block mt-1">Evidence: {rec.evidence}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {adaptiveContext.failureSignals?.length > 0 && (
+                  <div>
+                    <div className="text-xs text-gray-500 mb-2">Historical Failure Signals</div>
+                    <div className="flex flex-col space-y-2">
+                      {adaptiveContext.failureSignals.map((fs: string, idx: number) => (
+                        <div key={idx} className="bg-red-900/20 border border-red-800 p-2 rounded text-xs text-red-300">
+                          {fs}
+                        </div>
                       ))}
                     </div>
                   </div>
