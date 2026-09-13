@@ -20,6 +20,9 @@ export function classifyObservation(obs: QAObservation): QADiagnosis {
   } else if (obs.category === 'motion') {
     cause = 'MOTION_SLOP';
     recommendedLayer = 'motion';
+  } else if (obs.category === 'visual-repetition') {
+    cause = 'CREATIVE_HOMOGENIZATION';
+    recommendedLayer = 'composition';
   }
 
   return {

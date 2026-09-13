@@ -4,6 +4,14 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Fluid Typography Tokens */
+  --text-fluid-display: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+  --text-fluid-heading-xl: clamp(2rem, 3vw + 1rem, 3.5rem);
+  --text-fluid-heading-lg: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+  --text-fluid-body-lg: clamp(1.125rem, 0.5vw + 0.875rem, 1.25rem);
+  --text-fluid-body: clamp(1rem, 0.5vw + 0.75rem, 1.125rem);
+  --text-fluid-body-sm: clamp(0.875rem, 0.25vw + 0.75rem, 1rem);
 }
 
 :root {

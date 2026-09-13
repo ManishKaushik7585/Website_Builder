@@ -5,9 +5,13 @@ import { Heading } from '../typography/Heading';
 import { Text } from '../typography/Text';
 import { Stack } from '../layout/Stack';
 import { Reveal } from '../motion/Reveal';
+import { AsymmetricSplit } from '../composition/AsymmetricSplit';
+import { EditorialColumns } from '../composition/EditorialColumns';
+import { LayeredOverlap } from '../composition/LayeredOverlap';
+import { VisualInterruption } from '../composition/VisualInterruption';
 
 export interface HeroSectionProps {
-  variant?: 'centered' | 'split';
+  variant?: 'centered' | 'split' | 'asymmetric-split' | 'editorial-columns' | 'media-narrative' | 'layered-overlap' | 'visual-interruption';
   eyebrow?: string;
   title: string;
   description: string;
@@ -35,13 +39,23 @@ export function HeroSection({
   return (
     <section className="py-20 md:py-32 w-full">
       <Reveal direction="up" duration="base" distance="sm">
-        {variant === 'centered' ? (
+        {variant === 'asymmetric-split' ? (
+          <AsymmetricSplit primaryContent={content} secondaryContent={media} ratio="60-40" />
+        ) : variant === 'editorial-columns' ? (
+          <EditorialColumns primaryContent={content} supportingContent={media} />
+        ) : variant === 'layered-overlap' ? (
+          <LayeredOverlap primary={media} secondary={content} overlapDirection="up" />
+        ) : variant === 'visual-interruption' ? (
+          <VisualInterruption height="vh-100" intensity="high">
+            {content}
+          </VisualInterruption>
+        ) : variant === 'split' || variant === 'media-narrative' ? (
+          <Split content={content} media={media} ratio="6/6" />
+        ) : (
           <Centered>
             {content}
             {media && <div className="mt-12 w-full">{media}</div>}
           </Centered>
-        ) : (
-          <Split content={content} media={media} ratio="6/6" />
         )}
       </Reveal>
     </section>

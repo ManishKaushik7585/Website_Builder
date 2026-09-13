@@ -1,6 +1,6 @@
 
 export type QASeverity = 'info' | 'minor' | 'moderate' | 'major' | 'critical';
-export type QACategory = 'visual' | 'layout' | 'spacing' | 'typography' | 'content' | 'media' | 'responsive' | 'accessibility' | 'motion' | 'performance' | 'structure' | 'density' | 'hierarchy' | 'rhythm';
+export type QACategory = 'visual' | 'layout' | 'spacing' | 'typography' | 'content' | 'media' | 'responsive' | 'accessibility' | 'motion' | 'performance' | 'structure' | 'density' | 'hierarchy' | 'rhythm' | 'visual-repetition';
 export type QAStatus = 'detected' | 'diagnosed' | 'recommended' | 'patched' | 'verified' | 'accepted' | 'rejected' | 'ignored';
 
 export interface QAObservation {

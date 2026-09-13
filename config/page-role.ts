@@ -18,4 +18,9 @@ export interface PageRole {
     hierarchy: import('./content-intelligence').ContentPriority[];
     pageSpecificConstraints?: Partial<import('./content-intelligence').ContentConstraint>;
   };
+  layoutIntent?: {
+    layoutType?: 'symmetric' | 'asymmetric' | 'editorial' | 'minimal' | 'dense';
+    compositionIntent?: 'centered' | 'split' | 'asymmetric-split' | 'editorial-columns' | 'staggered-collection' | 'featured-supporting' | 'media-narrative' | 'stacked';
+    heroBalance?: 'text-dominant' | 'visual-dominant' | 'balanced';
+  };
 }

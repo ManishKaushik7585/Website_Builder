@@ -96,6 +96,10 @@ export interface CreativeDirectionContract {
     aestheticDirection: string;
     visualLanguage: string[];
     differentiation: string;
+    typographicScale?: 'monumental' | 'large' | 'balanced' | 'quiet';
+    imageDominance?: 'immersive' | 'leading' | 'supporting' | 'minimal';
+    spatialTension?: 'high' | 'medium' | 'low';
+    visualContrast?: 'extreme' | 'high' | 'moderate' | 'subtle';
   };
 
   artDirection: {
@@ -113,6 +117,9 @@ export interface CreativeDirectionContract {
     scaleStrategy: string;
     weightStrategy: string;
     readabilityPriority: string;
+    fluidityPreference?: 'static' | 'fluid';
+    displayScale?: 'moderate' | 'large';
+    maxLineLength?: 'narrow' | 'optimal' | 'wide';
   };
 
   color: {
@@ -129,6 +136,18 @@ export interface CreativeDirectionContract {
     spacingStrategy: string;
     sectionRhythm: string;
     whitespaceStrategy: string;
+    layoutIntent?: 'symmetric' | 'asymmetric' | 'editorial' | 'minimal' | 'dense' | 'experimental' | 'cinematic';
+    compositionIntent?: 'centered' | 'split' | 'asymmetric-split' | 'editorial-columns' | 'staggered-collection' | 'featured-supporting' | 'media-narrative' | 'layered-overlap' | 'visual-interruption' | 'stacked';
+    alignmentIntent?: 'center' | 'offset' | 'edge-aligned';
+    contentDensity?: 'spacious' | 'balanced' | 'compact';
+    heroBalance?: 'text-dominant' | 'visual-dominant' | 'balanced';
+    responsiveTransformation?: 'stack-early' | 'stack-late' | 'preserve-split';
+  };
+
+  narrative?: {
+    sequence: string[]; // e.g. ["Manifesto", "Proof", "Visual Interruption", "Services"]
+    pacing: 'rapid' | 'measured' | 'cinematic';
+    climaxRole?: string;
   };
 
   components: {

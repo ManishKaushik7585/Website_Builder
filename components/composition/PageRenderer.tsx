@@ -2,6 +2,7 @@ import { ContentIntentConfig } from '@/config/content-intent';
 import { VisualIntent } from '@/config/visual-intent';
 import React from 'react';
 import { sectionRegistry } from '@/registry/sections';
+import { resolveSectionProps } from '@/lib/semantic-resolver';
 
 export interface PageSectionConfig {
   id: string;
@@ -32,7 +33,9 @@ export function PageRenderer({ config }: { config: PageConfig }) {
           return null; // Gracefully handle unknown sections
         }
 
-        return <SectionComponent key={section.id} {...section.props} />;
+        const resolvedProps = resolveSectionProps(section.type, section.props);
+
+        return <SectionComponent key={section.id} {...resolvedProps} />;
       })}
     </>
   );
